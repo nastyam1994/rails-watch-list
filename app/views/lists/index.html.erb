@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="banner-nav-bar">
+    <div><h1><i class="fas fa-play"></i><span class="logo-title">Watch List</span></h1></div>
+    <div>
+      <ul class="banner-ul">
+        <li>Login</li>
+        <li class="btn-sign">Sign up</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="banner-info">
+    <div>
+      <p class="banner-title">AVENGERS COLLECTION</p>
+      <p class="banner-subtitle">All movies avaiable right now!</p>
+      <div class="btn-infos">
+<!--         <p class="btn-add">Add to list</p> -->
+        <%= link_to "Add movie", new_movie_path(@movie) %>
+        <%= link_to "Add list", new_list_path%>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="movie-category">
+  <p class="category-title">MY LISTS</p>
+</div>
+
+<div class="container">
+
+<div class="lists">
+  <% @lists.each do |list| %>
+  <div class="left-border">
+
+    <div>
+      <div class="list-box">
+        <div class="row">
+          <div class="col-lg-6">
+            <%= cl_image_tag list.photo.key, crop: :fill, class: 'img-list' %>
+<!--
+            <img class="img-list" src="<%= list.cover %>"> -->
+          </div>
+          <div class="col-lg-6">
+            <h3 class="list-title"><%= list.name %> List</h3>
+            <p class="click-text-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac interdum tellus. </p>
+            <span class="click">
+              <%= link_to "More info", list_path(list), class:"btn-click"%>
+            </span>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <% end %>
+</div>
