@@ -1,11 +1,36 @@
-<p style="color: green"><%= notice %></p>
+<div class="container">
+<h1><%= @list.name %></h1>
+<ul>
+  <li><%= link_to "Back to Lists", lists_path %></li>
+  <li><%= link_to "Edit List", edit_list_path(@list) %></li>
+  <li><%= link_to "Delete List", list_path(@list), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></li>
+</ul>
 
-
-<%= render @list %>
-
+<h2>Bookmarks</h2>
 <div>
-<% link_to "Edit this list", edit_list_path(@list)%>
-<%= button_to "Destroy this restaurant", @restaurant, method: :delete %>
+  <% if @list.movies.length.zero? %>
+    <p>There are no bookmarks here yet</p>
+  <% else %>
+    <% @list.movies.each do |movie| %>
+      <div>
+        <img style="width: 150px" src="<%= movie.poster_url %>" alt="<%= movie.title %>">
+        <p><%= link_to movie.title, movie_path(movie) %></p>
+        <% bookmark = @list.bookmarks.find_by(movie: movie) %>
+        <% if bookmark %>
+          <p><%= bookmark.comment %></p>
+          <%= link_to "Delete bookmark", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+        <% else %>
+          <p>No comment available</p>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
 </div>
 
-  <%= link_to "Back to lists", lists_path %>
+<h3>Add a bookmark</h3>
+  <%= simple_form_for [@list, @bookmark] do |f| %>
+    <%= f.association :movie %>
+    <%= f.input :comment %>
+    <%= f.submit class: 'btn btn-primary mt-3' %>
+  <% end %>
+</div>
