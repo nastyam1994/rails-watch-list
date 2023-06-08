@@ -1,0 +1,117 @@
+.footer {
+  background-color: $darkBlue;
+  color: $white;
+  text-align: center;
+
+  .container {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 3fr;
+      grid-template-rows: 1fr auto;
+      grid-template-areas:
+          "logo links1 links2 cta"
+          "social links1 links2 copyright";
+      gap: 1rem;
+      justify-items: start;
+
+      @media (max-width: 89.9375em) {
+          display: block;
+      }
+  }
+
+  a {
+      color: $white;
+  }
+
+  &__logo {
+      display: inline-block;
+      margin-bottom: rem(30);
+
+      @media (min-width: 56.25em) {
+          grid-area: logo;
+      }
+  }
+
+  &__social {
+      margin-bottom: 1.875rem;
+
+      @media (min-width: 56.25em) {
+          grid-area: social;
+          align-self: end;
+      }
+
+      a {
+          display: inline-block;
+          height: 1.25rem;
+
+          svg path {
+              transition: fill 150ms ease-in-out;
+          }
+
+          &:hover svg path {
+              fill: $limeGreen;
+          }
+      }
+
+      a:not(:last-child) {
+          margin-right: 1rem;
+      }
+  }
+
+  &__links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 2.25;
+
+      @media (min-width: 56.25em) {
+          justify-content: space-between;
+          align-items: start;
+      }
+
+      &.col1 {
+          @media (min-width: 56.25em) {
+              grid-area: links1;
+          }
+      }
+
+      &.col2 {
+          margin-bottom: rem(30);
+
+          @media (min-width: 56.25em) {
+              grid-area: links2;
+          }
+      }
+
+      a {
+          transition: color 150ms ease-in-out;
+
+          &:hover {
+              color: $limeGreen;
+          }
+      }
+  }
+
+  &__cta {
+      @media (min-width: 56.25em) {
+          grid-area: cta;
+          text-align: right;
+          justify-self: end;
+      }
+  }
+
+  &__copyright {
+      color: $grayishBlue;
+      font-size: rem(14);
+
+      @media (max-width: 56.1875em) {
+          margin-top: rem(30);
+      }
+
+      @media (min-width: 56.25em) {
+          grid-area: copyright;
+          align-self: end;
+          justify-self: end;
+          font-size: rem(16);
+      }
+  }
+}

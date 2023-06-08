@@ -1,0 +1,184 @@
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  color: $grayishBlue;
+  font-size: $f-m;
+  line-height: 1.3;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+  &.noscroll {
+    overflow: hidden;
+  }
+}
+
+// Text style
+h1,
+h2,
+h3 {
+  font-weight: 300;
+  line-height: 1.15;
+  color: $darkBlue;
+  margin-top: 0px;
+}
+
+h1 {
+  font-size: $f-xl;
+  margin-bottom: 1.5rem;
+
+  @media (min-width: 56.25em) {
+    font-size: $f-xl;
+  }
+}
+
+h2 {
+  font-size: $f-l;
+  margin-bottom: $f-m;
+
+  @media (min-width: 56.25em) {
+    font-size: $f-xl;
+    margin-bottom: $f-xl;
+  }
+}
+
+h3 {
+  font-size: $f-sm;
+  margin-bottom: $f-sm;
+
+  @media (min-width: 56.25em) {
+    font-size: $f-m;
+  }
+}
+
+p {
+  font-size: $f-sm;
+  line-height: 1.5;
+  margin-bottom: $f-l;
+  color: $grayishBlue;
+
+  @media (min-width: 56.25em) {
+    font-size: $f-m;
+  }
+}
+
+a,
+a:visited,
+a:hover {
+  text-decoration: none;
+}
+
+// Spacing
+.container {
+  max-width: 69.375rem;
+  margin: 0 auto;
+
+  &-pall {
+    padding-top: $f-xl;
+    padding-right: $f-l;
+    padding-bottom: $f-xl;
+    padding-left: $f-l;
+
+    @media (min-width: 56.25em) {
+      padding-top: $f-xl;
+      padding-bottom: $f-xl;
+    }
+  }
+
+  &-py {
+    padding-top: $f-xl;
+    padding-bottom: $f-xl;
+
+    @media (min-width: 56.25em) {
+      padding-top: $f-xl;
+      padding-bottom: $f-xl;
+    }
+  }
+
+  &-px {
+    padding-right: $f-l;
+    padding-left: $f-l;
+  }
+
+  &-pt {
+    padding-top: $f-xl;
+
+    @media (min-width: 56.25em) {
+      padding-top: $f-xl;
+    }
+  }
+
+  &-pr {
+    padding-right: $f-l;
+  }
+
+  &-pb {
+    padding-bottom: $f-xl;
+
+    @media (min-width: 56.25em) {
+      padding-bottom: $f-xl;
+    }
+  }
+
+  &-pl {
+    padding-left: $f-l;
+  }
+}
+
+// Flex
+.flex {
+  display: flex;
+
+  &-ai-c {
+    align-items: center;
+  }
+
+  &-jc-c {
+    justify-content: center;
+  }
+
+  &-jc-sb {
+    justify-content: space-between;
+  }
+}
+
+// Button
+.button {
+  position: relative;
+  display: inline-block;
+  border: 0;
+  border-radius: 50px;
+  padding: $f-sm $f-l;
+  background: linear-gradient(to right, $limeGreen, $brightCyan);
+  color: $white;
+  font-size: $f-sm;
+  transition: opacity 300ms ease-in-out;
+
+  &:hover {
+    opacity: 0.75;
+  }
+}
+
+// Visibility
+.hidden-for-mobile {
+  @media (max-width: 89.9375em) {
+    display: none;
+  }
+}
+
+.hidden-for-desktop {
+  @media (min-width: 56.25em) {
+    display: none;
+  }
+}

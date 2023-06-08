@@ -1,0 +1,10 @@
+<header class="header">
+  <nav>
+    <div class="header__wrap container flex flex-ai-c flex-jc-sb">
+      <%= link_to lists_path, class: "header__logo" do%>
+        <%= image_tag "logo.svg" %>
+      <%end%>
+      <%= link_to "Make A New List", new_list_path, class: "button" %>
+    </div>
+  </nav>
+</header>
