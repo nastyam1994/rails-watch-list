@@ -24,7 +24,7 @@
           <div class="list__item">
           <%= link_to list_path(list) do %>
           <div>
-            <div class="list__image" style="background-image: url('./assets/image-placeholder.jpg');"></div>
+            <div class="list__image" style="background-image: url(<% link_to 'image-placeholder.jpeg'%>);"></div>
             <div class="list_length"><%= list.bookmarks.length%> Movie(s)</div>
           </div>
             <div class="list__text">
@@ -42,32 +42,3 @@
     </div>
   </div>
 </section>
-
-<%# Movies section %>
-<section class="lists">
-  <div class="list__content container container-pall">
-    <div>
-      <h2>Broad Collection of Movies</h2>
-      <p>Explore and find all your curated lists in one place.</p>
-    </div>
-    <div class="list__grid">
-      <% random_movies = Movie.order(Arel.sql('RANDOM()')).limit(4) %>
-      <% random_movies.each do |movie| %>
-        <div class="list__item">
-          <%= link_to movie_path(movie) do %>
-            <div>
-              <div class="list__image" style="background-image: <%= movie.poster_url %>"></div>
-              <div class="list_length"><%= movie.rating %> <i class="fa-solid fa-star" style="color: $yellow;"></i></div>
-            </div>
-            <div class="list__text">
-              <div class="list__description">
-                <h3><%= link_to movie.title, movie_path(movie) %></h3>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</section>
-
