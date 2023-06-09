@@ -47,11 +47,12 @@
 <section class="lists">
   <div class="list__content container container-pall">
     <div>
-        <h2>Broad Collection of Movies</h2>
-        <p>Explore and find all your curated lists in one place.</p>
+      <h2>Broad Collection of Movies</h2>
+      <p>Explore and find all your curated lists in one place.</p>
     </div>
     <div class="list__grid">
-      <% @movies.each do |movie| %>
+      <% random_movies = Movie.order(Arel.sql('RANDOM()')).limit(4) %>
+      <% random_movies.each do |movie| %>
         <div class="list__item">
           <%= link_to movie_path(movie) do %>
             <div>
@@ -61,13 +62,6 @@
             <div class="list__text">
               <div class="list__description">
                 <h3><%= link_to movie.title, movie_path(movie) %></h3>
-                <% bookmark = @list.bookmarks.find_by(movie: movie) %>
-                <% if bookmark %>
-                  <p><%= bookmark.comment %></p>
-                  <%= link_to "Delete bookmark", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-                <% else %>
-                  <p>No comment available</p>
-                <% end %>
               </div>
             </div>
           <% end %>
