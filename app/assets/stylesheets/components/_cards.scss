@@ -46,14 +46,8 @@
 }
 
 .list_length {
-  content: '';
-  position: absolute;
-  top: 5;
-  left: 5;
   // display: inline-block;
-  color: $white;
+  color: $limeGreen;
+  font-weight: 400;
   margin-bottom: 0.5rem;
-  background-color: $limeGreen;
-  padding: 0.75rem;
-  border-radius: 5px;
 }

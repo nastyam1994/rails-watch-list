@@ -1,36 +1,71 @@
+<!-- Hero section -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__image" style="background-image: url('');"></div>
+    <div class="hero__text container-pall">
+      <h1><%= @list.name %></h1>
+      <p>
+        Discover a movie lover's paradise at our website, where you can bookmark and save all your favorite films with just a click.
+      </p>
+      <ul>
+        <li><%= link_to "Back to Lists", lists_path, class: "button" %></li>
+        <li><%= link_to "Edit List", edit_list_path(@list, class: "button") %></li>
+        <li><%= link_to "Delete List", list_path(@list), class: "button", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <div class="container">
-<h1><%= @list.name %></h1>
-<ul>
-  <li><%= link_to "Back to Lists", lists_path %></li>
-  <li><%= link_to "Edit List", edit_list_path(@list) %></li>
-  <li><%= link_to "Delete List", list_path(@list), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></li>
-</ul>
+  <h1></h1>
+  <ul>
+    <li><%= link_to "Back to Lists", lists_path %></li>
+    <li><%= link_to "Edit List", edit_list_path(@list) %></li>
+    <li><%= link_to "Delete List", list_path(@list), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></li>
+  </ul>
 
-<h2>Bookmarks</h2>
-<div>
-  <% if @list.movies.length.zero? %>
-    <p>There are no bookmarks here yet</p>
-  <% else %>
-    <% @list.movies.each do |movie| %>
-      <div>
-        <img style="width: 150px" src="<%= movie.poster_url %>" alt="<%= movie.title %>">
-        <p><%= link_to movie.title, movie_path(movie) %></p>
-        <% bookmark = @list.bookmarks.find_by(movie: movie) %>
-        <% if bookmark %>
-          <p><%= bookmark.comment %></p>
-          <%= link_to "Delete bookmark", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-        <% else %>
-          <p>No comment available</p>
-        <% end %>
-      </div>
-    <% end %>
-  <% end %>
-</div>
-
-<h3>Add a bookmark</h3>
+  <h3>Add a bookmark</h3>
   <%= simple_form_for [@list, @bookmark] do |f| %>
-    <%= f.association :movie %>
-    <%= f.input :comment %>
-    <%= f.submit class: 'btn btn-primary mt-3' %>
+    <div class="form-inputs">
+      <%= f.association :movie %>
+      <%= f.input :comment %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
   <% end %>
 </div>
+
+<%# Bookmarks section %>
+<section id="blog" class="lists">
+  <div class="list__content container container-pall">
+    <div>
+      <h2>My Bookmarks</h2>
+    </div>
+    <div class="list__grid">
+      <% @lists.movies.each do |movie| %>
+        <div class="list__item">
+          <%= link_to movie_path(movie) do %>
+            <div>
+              <div class="list__image" style="background-image: <%= movie.poster_url %>"></div>
+              <div class="list_length"><%= movie.rating %> <i class="fa-solid fa-star" style="color: $yellow;"></div>
+            </div>
+            <div class="list__text">
+              <div class="list__description">
+                <h3><%= link_to movie.title, movie_path(movie) %></h3>
+                <% bookmark = @list.bookmarks.find_by(movie: movie) %>
+                <% if bookmark %>
+                  <p><%= bookmark.comment %></p>
+                  <%= link_to "Delete bookmark", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+                <% else %>
+                  <p>No comment available</p>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
