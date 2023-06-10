@@ -1,13 +1,12 @@
 <!-- Hero section -->
 <section class="hero">
-  <div class="container">
-    <div class="hero__image" style="background-image: url('');"></div>
+  <div class="container container-pall">
+    <div class="list__image" style="width: 30%; min-height: 500px; background-position: center; background-image: url(<%= @movie.poster_url %>)"></div>
     <div class="hero__text container-pall">
-      <h1>All your movies in one place</h1>
-      <p>
-        Discover a movie lover's paradise at our website, where you can bookmark and save all your favorite films with just a click.
-      </p>
-      <%= link_to "Make A New List", new_list_path, class: "button" %>
+      <h1><%= @movie.title%></h1>
+      <p>Rating: <%= @movie.rating %> <i class="fa-solid fa-star" style="color: $yellow;"></i></p>
+      <p><%= @movie.overview %></p>
+      <%= link_to "Go Back", request.referer || new_list_path, class: "button" %>
     </div>
   </div>
 </section>

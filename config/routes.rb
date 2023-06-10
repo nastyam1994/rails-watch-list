@@ -6,5 +6,9 @@ Rails.application.routes.draw do
   end
 
   resources :bookmarks, only: [:destroy]
-  resources :movies
+  resources :movies, only: [:show]
 end
+# resources :lists do
+#   member do
+#     get :movie
+#   end

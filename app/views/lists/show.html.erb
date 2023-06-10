@@ -1,12 +1,10 @@
 <!-- Hero section -->
 <section class="hero">
   <div class="container">
-    <div class="hero__image" style="background-image: url('');"></div>
+    <%# <div class="hero__image"></div> %>
     <div class="hero__text container-pall">
       <h1><%= @list.name %></h1>
-      <p>
-        Discover a movie lover's paradise at our website, where you can bookmark and save all your favorite films with just a click.
-      </p>
+      <p><%= @list.description %></p>
         <%= link_to "Back to Lists", lists_path, class: "button" %>
         <%= link_to "Edit List", edit_list_path(@list), class: "button" %>
         <%= link_to "Delete List", list_path(@list), class: "button", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>

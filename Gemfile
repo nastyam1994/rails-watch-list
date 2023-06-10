@@ -48,6 +48,7 @@ gem "simple_form"
 # Use Sass to process CSS
 gem "sassc-rails"
 
+gem "dotenv-rails", groups: [:development, :test]
 gem 'json'
 gem 'open-uri'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
