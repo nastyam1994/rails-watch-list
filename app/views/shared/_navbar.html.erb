@@ -1,10 +1,15 @@
 <header class="header">
   <nav>
     <div class="header__wrap container flex flex-ai-c flex-jc-sb">
-      <%= link_to "WATCHLIST", lists_path %>
+      <%= link_to lists_path do %>
+        <div>
+          <i class="fa-duotone fa-bookmark" style="--fa-primary-color: #9336b4; --fa-secondary-color: #ffe79b;"></i>
+          <p>WATCHLIST</p>
+        </div>
+      <% end %>
       <%# <%= link_to lists_path, class: "header__logo" do%>
-        <%# <%= image_tag "logo.svg" %> 
-      <%# <%end%> 
+      <%# <%= image_tag "logo.svg" %>
+      <%# <%end%>
       <%= link_to "Make A New List", new_list_path, class: "button" %>
     </div>
   </nav>

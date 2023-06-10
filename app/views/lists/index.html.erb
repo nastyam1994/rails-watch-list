@@ -1,16 +1,18 @@
 <!-- Hero section -->
 <section class="hero">
   <div class="container">
-    <div class="hero__image" style="background-image: url('');"></div>
-    <div class="hero__text container-pall">
+    <div class="hero__image" style="background-image: asset-url('bg-intro-desktop.svg');"></div>
+    <div class="hero__text container-pall" data-controller="typewriter">
       <h1>All your movies in one place</h1>
       <p>
         Discover a movie lover's paradise at our website, where you can bookmark and save all your favorite films with just a click.
       </p>
       <%= link_to "Make A New List", new_list_path, class: "button" %>
+      <span class="txt" data-typewriter-text data-typewriter-words='["Discover a movie lover\'s paradise", "Bookmark and save all your favorite films", "All your movies in one place"]' data-typewriter-wait="3000"></span>
     </div>
   </div>
 </section>
+
 
 <%# Lists section %>
 <section class="lists">
@@ -20,25 +22,30 @@
         <p>Explore and find all your curated lists in one place.</p>
     </div>
     <div class="list__grid">
-      <% @lists.each do |list| %>
+      <% if @lists.present? %>
+        <% @lists.each do |list| %>
           <div class="list__item">
-          <%= link_to list_path(list) do %>
-          <div>
-            <div class="list__image" style="background-image: url(<% link_to 'image-placeholder.jpeg'%>);"></div>
-            <div class="list_length"><%= list.bookmarks.length%> Movie(s)</div>
-          </div>
-            <div class="list__text">
-              <div class="list__description">
-                <h3><%= list.name %> List</h3>
-                <p><%= list.description %></p>
+            <%= link_to list_path(list) do %>
+              <div>
+                <div class="list__image" style="background-image: url('<%= list.photo.present? ? cl_image_path(list.photo.key, crop: :fill) : asset_path('image-placeholder.jpg') %>');"></div>
+                <div class="list_length"><%= list.bookmarks.length %> Movie(s)</div>
               </div>
-              <span class="click">
-                <%= link_to "Open List", list_path(list) %>
-              </span>
-            </div>
-          <% end %>
-        </div>
+              <div class="list__text">
+                <div class="list__description">
+                  <h3><%= list.name %> List</h3>
+                  <p><%= list.description %></p>
+                </div>
+                <%# <span class="click">
+                  <%= link_to "Open List", list_path(list) %>
+                <%# </span> %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        <p>There are no lists yet. <%= link_to "Let's create one", new_list_path %></p>
       <% end %>
     </div>
+
   </div>
 </section>

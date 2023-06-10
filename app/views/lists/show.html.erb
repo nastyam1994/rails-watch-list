@@ -3,18 +3,32 @@
   <div class="container">
     <%# <div class="hero__image"></div> %>
     <div class="hero__text container-pall">
-      <h1><%= @list.name %></h1>
-      <p><%= @list.description %></p>
+        <h1><%= @list.name %></h1>
+        <p><%= @list.description %></p>
         <%= link_to "Back to Lists", lists_path, class: "button" %>
         <%= link_to "Edit List", edit_list_path(@list), class: "button" %>
         <%= link_to "Delete List", list_path(@list), class: "button", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
     </div>
+    <div class="list__image" style="width: 30%; min-height: 500px; background-image: url('<%= @list.photo.present? ? cl_image_path(@list.photo.key, crop: :fill) : asset_path('image-placeholder.jpg') %>');"></div>
   </div>
 </section>
 
 
 <%# Bookmarks section %>
 <section class="lists">
+    <div class="container container-py">
+      <h3>Add a Bookmark</h3>
+      <%= simple_form_for [@list, @bookmark] do |f| %>
+        <div class="form-inputs">
+          <%= f.association :movie %>
+          <%= f.input :comment %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, class: "button" %>
+        </div>
+      <% end %>
+    </div>
   <div class="list__content container container-pall">
     <div>
       <h2>My Bookmarks</h2>
@@ -35,26 +49,12 @@
                 <h3><%= link_to movie.title, movie_path(movie) %></h3>
                 <% bookmark = @list.bookmarks.find_by(movie: movie) %>
                 <p><%= bookmark.comment %></p>
-                <%= link_to "Delete bookmark", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+                <%= link_to "Delete bookmark", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-warning" %>
               </div>
             </div>
           <% end %>
         </div>
       <% end %>
-      <% end %>
-    </div>
-
-    <div class="container-py">
-      <h3>Add a Bookmark</h3>
-      <%= simple_form_for [@list, @bookmark] do |f| %>
-        <div class="form-inputs">
-          <%= f.association :movie %>
-          <%= f.input :comment %>
-        </div>
-
-        <div class="form-actions">
-          <%= f.button :submit, class: "button" %>
-        </div>
       <% end %>
     </div>
 
