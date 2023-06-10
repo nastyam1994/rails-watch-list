@@ -7,5 +7,5 @@ import { application } from "./application"
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import TypewriterController from "./typewriter_controller"
-application.register("typewriter", TypewriterController)
+// import TypewriterController from "./typewriter_controller"
+// application.register("typewriter", TypewriterController)

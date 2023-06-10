@@ -1,14 +1,14 @@
-import { Controller } from 'stimulus';
+// import { Controller } from 'stimulus';
 
-export default class extends Controller {
-  connect() {
-    const txtElement = this.element.querySelector('.txt-type');
-    const words = JSON.parse(txtElement.getAttribute('data-words'));
-    const wait = txtElement.getAttribute('data-wait');
+// export default class extends Controller {
+//   connect() {
+//     const txtElement = this.element.querySelector('.txt-type');
+//     const words = JSON.parse(txtElement.getAttribute('data-words'));
+//     const wait = txtElement.getAttribute('data-wait');
 
-    new TypeWriter(txtElement, words, wait).type();
-  }
-}
+//     new TypeWriter(txtElement, words, wait).type();
+//   }
+// }
 
 // class TypeWriter {
 //   constructor(txtElement, words, wait = 3000) {
