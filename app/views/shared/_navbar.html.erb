@@ -1,12 +1,13 @@
 <header class="header">
   <nav>
     <div class="header__wrap container flex flex-ai-c flex-jc-sb">
-      <%= link_to lists_path do %>
-        <div>
-          <i class="fa-duotone fa-bookmark" style="--fa-primary-color: #9336b4; --fa-secondary-color: #ffe79b;"></i>
-          <p>WATCHLIST</p>
-        </div>
-      <% end %>
+      <div>
+        <%= link_to lists_path, class: "container flex flex-ai-c flex-js-c" do %>
+          <i class="fa-solid fa-film" style="color: #9336b4; display: inline-block;"></i>
+          <p style=" margin-bottom: 0; margin-left: .5rem;">WATCHLIST</p>
+        <% end %>
+      </div>
+
       <%# <%= link_to lists_path, class: "header__logo" do%>
       <%# <%= image_tag "logo.svg" %>
       <%# <%end%>

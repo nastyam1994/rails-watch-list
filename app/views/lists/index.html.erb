@@ -28,22 +28,32 @@
             <%= link_to list_path(list) do %>
               <div>
                 <div class="list__image" style="background-image: url('<%= list.photo.present? ? cl_image_path(list.photo.key, crop: :fill) : asset_path('image-placeholder.jpg') %>');"></div>
-                <div class="list_length"><%= list.bookmarks.length %> Movie(s)</div>
-              </div>
-              <div class="list__text">
-                <div class="list__description">
+                <div class="container">
+                   <div class="list__length">
+                  <% if list.bookmarks.length == 1 %>
+                    1 Movie
+                  <% elsif list.bookmarks.length % 10 == 1 %>
+                    <%= list.bookmarks.length %> Movie
+                  <% else %>
+                    <%= list.bookmarks.length %> Movies
+                  <% end %>
+                </div>
                   <h3><%= list.name %> List</h3>
                   <p><%= list.description %></p>
+                 <div class="list__text">
+                <div class="list__description">
                 </div>
                 <%# <span class="click">
                   <%= link_to "Open List", list_path(list) %>
                 <%# </span> %>
               </div>
+              </div>
+          </div>
             <% end %>
           </div>
         <% end %>
       <% else %>
-        <p>There are no lists yet. <%= link_to "Let's create one", new_list_path %></p>
+        <p>There are no lists yet. <br><%= link_to "Let's create one", new_list_path %></p>
       <% end %>
     </div>
 
